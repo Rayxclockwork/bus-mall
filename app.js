@@ -7,9 +7,9 @@ var left = document.getElementById('left');
 var middle = document.getElementById('middle');
 var right = document.getElementById('right');
 
-var leftProduct = null;
-var middleProduct = null;
-var rightProduct = null;
+var leftProductIndex = null;
+var middleProductIndex = null;
+var rightProductIndex = null;
 
 //votes start at 0
 var prodVote = 0;
@@ -32,15 +32,32 @@ function randomProduct(){
 
 function renderProduct(){
   do{
-    leftProduct = randomProduct();
-    middleProduct = randomProduct();
-    rightProduct = randomProduct();
-  } while(leftProduct === middleProduct || leftProduct === rightProduct || middleProduct === rightProduct);
+    leftProductIndex = randomProduct();
+    middleProductIndex = randomProduct();
+    rightProductIndex = randomProduct();
+  } while(leftProductIndex === middleProductIndex || leftProductIndex === rightProductIndex || middleProductIndex === rightProductIndex);
 
-  Product.allImages[leftProduct].view++;
-  Product.allImages[middleProduct].views++;
-  Product.allImages[rightProduct].views++;
+  Product.allImages[leftProductIndex].view++;
+  Product.allImages[middleProductIndex].views++;
+  Product.allImages[rightProductIndex].views++;
 }
+
+var handleClickOnProduct = function(event){
+  var prodClicked = event.target.id;
+  if (prodClicked === 'left' || prodClicked === 'middle' || prodClicked === 'right'){
+    prodVote++;
+    if (prodClicked ==='left'){
+      Product.allImages[leftProductIndex].click++;
+    }
+  }else if(prodClicked === 'middle'){
+    Product.allImages[middleProductIndex].click++;
+
+  }else if(prodClicked ==='right'){
+    Product.allImages[rightProductIndex].click++;
+  } else{
+    alert('You didn\'t click on an image!');
+  }
+};
 
 if (prodVote === 25){
   productImage.removeEventListener('click', handleClickOnProduct);
