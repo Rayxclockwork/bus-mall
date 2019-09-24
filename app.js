@@ -112,7 +112,6 @@ var handleClickOnProduct = function(event) {
   //   var newLi = document.createElement('li');
   //   newLi.textContent = `${object.name[i]} got ${object.click} votes with ${object.view} views.`;
   //   ulElement.appendChild(newLi);
-
   // }
 
 
