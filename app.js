@@ -107,10 +107,9 @@ var handleClickOnProduct = function(event) {
 
 productImage.addEventListener('click', handleClickOnProduct);
 
-// console.log(prodVote, 'votes');
-// if (prodVote === 3){
+//creates list
+products: ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn','usb', 'water-can', 'wine-glass'],
 
-// }
 
 
 console.log(Product.allImages);
