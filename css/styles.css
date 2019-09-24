@@ -1,8 +1,30 @@
+header{
+  height:100px;
+  width:100%;
+  margin-bottom:30px;
+}
+header>img{
+  margin: 20px 0;
+  float:left;
+  margin-left:10px;
+}
+header>a{
+  padding: 10px;
+  float:right;
+  text-decoration: none;
+}
 body{
   width:960px;
 }
-.productImage{
+p{
+width:40px;
+}
+#left, #middle, #right{
     width:200px;
-    height:300px;
-    padding:6px;
+    height:200px;
+    padding:16px;
+    display:inline;
   }
+footer{
+  height:50px;
+}

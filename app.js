@@ -73,6 +73,17 @@ function renderProduct(){
 }
 
 var handleClickOnProduct = function(event) {
+  console.log('prodVote: ', prodVote);
+  if(prodVote >= 3) {
+    console.log('hell low whirled');
+    productImage.removeEventListener('click', handleClickOnProduct);
+    for(var i=0; i < Product.allImages.length; i++)
+    {
+      var product = Product.allImages[i];
+    }
+  } else{
+    renderProduct();
+  }
   var prodClicked = event.target.id;
   if (prodClicked === 'left' || prodClicked === 'middle' || prodClicked === 'right'){
     console.log('test');
@@ -82,7 +93,6 @@ var handleClickOnProduct = function(event) {
     }
   }else if(prodClicked === 'middle'){
     Product.allImages[middleProductIndex].click++;
-    
   }else if(prodClicked ==='right'){
     Product.allImages[rightProductIndex].click++;
   } else{
@@ -92,20 +102,15 @@ var handleClickOnProduct = function(event) {
   Product.allImages[middleProductIndex].view++;
   Product.allImages[rightProductIndex].view++;
   renderProduct();
-  prodVote++;
+
 };
 
 productImage.addEventListener('click', handleClickOnProduct);
 
-if (prodVote === 25){
-  productImage.removeEventListener('click', handleClickOnProduct);
-  for(var i=0; i < Product.allImages.length; i++)
-  {
-    var product = Product.allImages[i];
-  }
-} else{
-  renderProduct();
-}
+// console.log(prodVote, 'votes');
+// if (prodVote === 3){
+
+// }
 
 
 console.log(Product.allImages);
