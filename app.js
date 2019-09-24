@@ -74,12 +74,8 @@ function renderProduct(){
 }
 
 var handleClickOnProduct = function(event) {
-  if(prodVote >= 25) {
+  if(prodVote >= 5) {
     productImage.removeEventListener('click', handleClickOnProduct);
-    for(var i=0; i < Product.allImages.length; i++)
-    {
-      var product = Product.allImages[i];
-    }
   } else{
     renderProduct();
   }
@@ -87,7 +83,8 @@ var handleClickOnProduct = function(event) {
   if (prodClicked === 'left' || prodClicked === 'middle' || prodClicked === 'right'){
     prodVote++;
     if (prodClicked ==='left'){
-      Product.allImages[leftProductIndex].click++;
+      var test = Product.allImages[leftProductIndex].click++;
+      console.log('test',test);
     }
   }else if(prodClicked === 'middle'){
     Product.allImages[middleProductIndex].click++;
@@ -99,24 +96,23 @@ var handleClickOnProduct = function(event) {
   Product.allImages[leftProductIndex].view++;
   Product.allImages[middleProductIndex].view++;
   Product.allImages[rightProductIndex].view++;
-  
-  //creates list
-  // var ob = Product.allImages[];
-  // var list = document.getElementById('results');
-  // var results = document.createElement('h4');
-  // results.textContent = 'results';
-  // list.appendChild(results);
-  // var ulElement = document.createElement('ul');
-  // for (var j=0; j < Product.allImages.length; j++);{
-
-  //   var newLi = document.createElement('li');
-  //   newLi.textContent = `${object.name[i]} got ${object.click} votes with ${object.view} views.`;
-  //   ulElement.appendChild(newLi);
-
-  // }
-
-
+  makeList();
 };
+
+//creates list
+function makeList(){
+  var ob = Product.allImages;
+  var list = document.getElementById('results');
+  for (var j=0; j < Product.allImages.length; j++);{
+
+    var newLi = document.createElement('li');
+    newLi.textContent = Product.allImages.name;
+    list.appendChild(newLi);
+    console.log('test');
+  }
+}
+
+
 
 function display(){
   //keeps array filled with 6 unique values, always
