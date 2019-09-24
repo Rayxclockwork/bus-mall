@@ -55,7 +55,6 @@ function randomProduct(){
 function renderProduct(){
 
   display();
-  console.log(Product.uniqueArray, 'test');
 
   do{
     leftProductIndex = Product.uniqueArray[0];
@@ -83,8 +82,7 @@ var handleClickOnProduct = function(event) {
   if (prodClicked === 'left' || prodClicked === 'middle' || prodClicked === 'right'){
     prodVote++;
     if (prodClicked ==='left'){
-      var test = Product.allImages[leftProductIndex].click++;
-      console.log('test',test);
+      Product.allImages[leftProductIndex].click++;
     }
   }else if(prodClicked === 'middle'){
     Product.allImages[middleProductIndex].click++;
@@ -134,22 +132,26 @@ renderProduct();
 productImage.addEventListener('click', handleClickOnProduct);
 
 Product.objectName =[];
-Product.objectView = [];
 Product.objectClick = [];
 
 function data(){
-
+  for(var i=0; i<Product.allImages.length; i++){
+    Product.objectName.push(Product.allImages[i].name);
+    Product.objectClick.push(Product.allImages[i].click);
+  }
 }
+console.log(Product.objectClick);
 
 function chart(){
+  data();
   var ctx = document.getElementById('busmallChart');
-  var Chart = new Chart(ctx,{
+  var chart = new Chart(ctx,{
     type:'bar',
     data:{
-      labels: [Product.objectName],
+      labels: Product.objectName,
       datasets: [{
         label: '# of Votes',
-        data: [Product.objectClick],
+        data: Product.objectClick,
         backgroundColor: [
           'rgba(255, 99, 132, 0.2)',
           'rgba(54, 162, 235, 0.2)',
