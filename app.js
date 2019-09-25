@@ -91,7 +91,7 @@ var handleClickOnProduct = function(event) {
     alert('You didn\'t click on an image!');
   }
 
-  if(prodVote >= 25) {
+  if(prodVote >= 5) {
     productImage.removeEventListener('click', handleClickOnProduct);
     chart();
     list();
@@ -201,4 +201,4 @@ function chart(){
     }
   });
 }
-console.log('test', chart());
+
