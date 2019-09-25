@@ -55,7 +55,6 @@ function randomProduct(){
 function renderProduct(){
 
   display();
-  console.log(Product.uniqueArray, 'test');
 
   do{
     leftProductIndex = Product.uniqueArray[0];
@@ -76,6 +75,7 @@ function renderProduct(){
 var handleClickOnProduct = function(event) {
   if(prodVote >= 5) {
     productImage.removeEventListener('click', handleClickOnProduct);
+    chart();
   } else{
     renderProduct();
   }
@@ -83,8 +83,7 @@ var handleClickOnProduct = function(event) {
   if (prodClicked === 'left' || prodClicked === 'middle' || prodClicked === 'right'){
     prodVote++;
     if (prodClicked ==='left'){
-      var test = Product.allImages[leftProductIndex].click++;
-      console.log('test',test);
+      Product.allImages[leftProductIndex].click++;
     }
   }else if(prodClicked === 'middle'){
     Product.allImages[middleProductIndex].click++;
@@ -96,21 +95,21 @@ var handleClickOnProduct = function(event) {
   Product.allImages[leftProductIndex].view++;
   Product.allImages[middleProductIndex].view++;
   Product.allImages[rightProductIndex].view++;
-  makeList();
+  // makeList();
 };
 
 //creates list
-function makeList(){
-  var ob = Product.allImages;
-  var list = document.getElementById('results');
-  for (var j=0; j < Product.allImages.length; j++);{
+// function makeList(){
+//   var ob = Product.allImages;
+//   var list = document.getElementById('results');
+//   for (var j=0; j < Product.allImages.length; j++);{
 
-    var newLi = document.createElement('li');
-    newLi.textContent = Product.allImages.name;
-    list.appendChild(newLi);
-    console.log('test');
-  }
-}
+//     var newLi = document.createElement('li');
+//     newLi.textContent = Product.allImages.name;
+//     list.appendChild(newLi);
+//     console.log('test');
+//   }
+// }
 
 
 
@@ -129,6 +128,58 @@ function display(){
 }
 
 
+renderProduct();
+
 productImage.addEventListener('click', handleClickOnProduct);
 
-renderProduct();
+Product.objectName =[];
+Product.objectClick = [];
+
+function data(){
+  for(var i=0; i<Product.allImages.length; i++){
+    Product.objectName.push(Product.allImages[i].name);
+    Product.objectClick.push(Product.allImages[i].click);
+  }
+}
+console.log(Product.objectClick);
+
+function chart(){
+  data();
+  var ctx = document.getElementById('busmallChart');
+  var chart = new Chart(ctx,{
+    type:'bar',
+    data:{
+      labels: Product.objectName,
+      datasets: [{
+        label: '# of Votes',
+        data: Product.objectClick,
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)'
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        yAxes:[{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });
+}
