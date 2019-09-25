@@ -91,7 +91,7 @@ var handleClickOnProduct = function(event) {
     alert('You didn\'t click on an image!');
   }
 
-  if(prodVote >= 5) {
+  if(prodVote >= 25) {
     productImage.removeEventListener('click', handleClickOnProduct);
     chart();
     list();
@@ -145,19 +145,6 @@ function data(){
   console.log(Product.objectClick);
 }
 
-// function voteStorage(){
-//   var json = JSON.stringify(Product.allImages.click);
-//   localStorage.setItem('products', json);
-// }
-// function getVotes() {
-//   var data = localStorage.getItem('products');
-//   var parsed = JSON.parse(data);
-//   console.log('parsed', parsed);
-
-//   Product.allImages.click = parsed;
-// }
-
-// console.log(voteStorage);
 
 
 //Creates chart
@@ -202,3 +189,17 @@ function chart(){
   });
 }
 
+
+function voteStorage(){
+  var json = JSON.stringify(Product.allImages.click);
+  localStorage.setItem('products', json);
+}
+function getVotes() {
+  var data = localStorage.getItem('products');
+  var parsed = JSON.parse(data);
+  console.log('parsed', parsed);
+
+  Product.allImages.click = parsed;
+}
+
+console.log(voteStorage);
