@@ -2,7 +2,7 @@
 
 //global variables
 Product.allImages=[];
-Product.uniqueArray =[];
+Product.prevDup =[];
 var productImage = document.getElementById('productImage');
 var left = document.getElementById('left');
 var middle = document.getElementById('middle');
@@ -25,8 +25,8 @@ function Product(name, image){
   Product.allImages.push(this);
 }
 
-new Product('bag', 'imgs/bag.jpg');
-new Product('banana', 'imgs/banana.jpg');
+new Product('Bag', 'imgs/bag.jpg');
+new Product('Banana Slicer', 'imgs/banana.jpg');
 new Product('bathroom', 'imgs/bathroom.jpg');
 new Product('boots', 'imgs/boots.jpg');
 new Product('breakfast', 'imgs/breakfast.jpg');
@@ -42,9 +42,9 @@ new Product('shark', 'imgs/shark.jpg');
 new Product('sweep', 'imgs/sweep.png');
 new Product('tauntaun', 'imgs/tauntaun.jpg');
 new Product('unicorn', 'imgs/unicorn.jpg');
-new Product('usb', 'imgs/usb.gif');
-new Product('water-can', 'imgs/water-can.jpg');
-new Product('wine-glass', 'imgs/wine-glass.jpg');
+new Product('Tentacle USB', 'imgs/usb.gif');
+new Product('Watering Can', 'imgs/water-can.jpg');
+new Product('Wine Glass', 'imgs/wine-glass.jpg');
 
 //Random function
 function randomProduct(){
@@ -57,9 +57,9 @@ function renderProduct(){
   display();
 
   do{
-    leftProductIndex = Product.uniqueArray[0];
-    middleProductIndex = Product.uniqueArray[1];
-    rightProductIndex = Product.uniqueArray[2];
+    leftProductIndex = Product.prevDup[0];
+    middleProductIndex = Product.prevDup[1];
+    rightProductIndex = Product.prevDup[2];
 
   } while(leftProductIndex === middleProductIndex || leftProductIndex === rightProductIndex || middleProductIndex === rightProductIndex);
 
@@ -73,7 +73,7 @@ function renderProduct(){
 }
 
 var handleClickOnProduct = function(event) {
-  if(prodVote >= 5) {
+  if(prodVote >= 25) {
     productImage.removeEventListener('click', handleClickOnProduct);
     chart();
   } else{
@@ -95,34 +95,21 @@ var handleClickOnProduct = function(event) {
   Product.allImages[leftProductIndex].view++;
   Product.allImages[middleProductIndex].view++;
   Product.allImages[rightProductIndex].view++;
-  // makeList();
 };
-
-//creates list
-// function makeList(){
-//   var ob = Product.allImages;
-//   var list = document.getElementById('results');
-//   for (var j=0; j < Product.allImages.length; j++);{
-
-//     var newLi = document.createElement('li');
-//     newLi.textContent = Product.allImages.name;
-//     list.appendChild(newLi);
-//     console.log('test');
-//   }
-// }
+list();
 
 
 
 function display(){
   //keeps array filled with 6 unique values, always
-  while(Product.uniqueArray.length < 6) {
+  while(Product.prevDup.length < 6) {
     var random = randomProduct();
-    while(!Product.uniqueArray.includes(random)) {
-      Product.uniqueArray.push(random);
+    while(!Product.prevDup.includes(random)) {
+      Product.prevDup.push(random);
     }
   }
-  for(var i=0; i<Product.uniqueArray.length; i++){
-    var temp = Product.uniqueArray.shift();
+  for(var i=0; i<Product.prevDup.length; i++){
+    var temp = Product.prevDup.shift();
     Product.allImages[i].src = Product.allImages[temp].path;
   }
 }
@@ -132,19 +119,26 @@ renderProduct();
 
 productImage.addEventListener('click', handleClickOnProduct);
 
-Product.objectName =[];
-Product.objectClick = [];
+// Product.objectName =[];
+// Product.objectClick = [];
 
-function data(){
+function list(){
   for(var i=0; i<Product.allImages.length; i++){
-    Product.objectName.push(Product.allImages[i].name);
-    Product.objectClick.push(Product.allImages[i].click);
+    var votes = document.createElement('li');
+    var votesP = document.createElement('p');
+    var output = `${Product.allImages[i].name} got ${Product.allImages[i].click} votes with ${Product.allImages[i].view} views`;
+    votesP.textContent = output;
+    votes.appendChild(votesP);
+    res.appendChild(votes);
+
+    // Product.objectName.push(Product.allImages[i].name);
+    // Product.objectClick.push(Product.allImages[i].click);
   }
 }
+
 console.log(Product.objectClick);
 
 function chart(){
-  data();
   var ctx = document.getElementById('busmallChart');
   var chart = new Chart(ctx,{
     type:'bar',
