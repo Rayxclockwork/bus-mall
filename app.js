@@ -75,6 +75,7 @@ function renderProduct(){
 var handleClickOnProduct = function(event) {
   if(prodVote >= 5) {
     productImage.removeEventListener('click', handleClickOnProduct);
+    chart();
   } else{
     renderProduct();
   }
@@ -95,7 +96,6 @@ var handleClickOnProduct = function(event) {
   Product.allImages[middleProductIndex].view++;
   Product.allImages[rightProductIndex].view++;
   // makeList();
-  chart();
 };
 
 //creates list
@@ -129,6 +129,7 @@ function display(){
 
 
 renderProduct();
+
 productImage.addEventListener('click', handleClickOnProduct);
 
 Product.objectName =[];
