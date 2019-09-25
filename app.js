@@ -52,8 +52,8 @@ function randomProduct(){
   return random;
 }
 
+//Shows 3 different images in each set
 function renderProduct(){
-
   display();
 
   do{
@@ -97,9 +97,9 @@ var handleClickOnProduct = function(event) {
   Product.allImages[rightProductIndex].view++;
 };
 list();
+chart();
 
-
-
+//prevents images from being shown 2 sets in a row
 function display(){
   //keeps array filled with 6 unique values, always
   while(Product.prevDup.length < 6) {
@@ -114,7 +114,6 @@ function display(){
   }
 }
 
-
 renderProduct();
 
 productImage.addEventListener('click', handleClickOnProduct);
@@ -122,6 +121,7 @@ productImage.addEventListener('click', handleClickOnProduct);
 // Product.objectName =[];
 // Product.objectClick = [];
 
+//Populates list
 function list(){
   for(var i=0; i<Product.allImages.length; i++){
     var votes = document.createElement('li');
@@ -137,7 +137,7 @@ function list(){
 }
 
 console.log(Product.objectClick);
-
+//Creates chart
 function chart(){
   var ctx = document.getElementById('busmallChart');
   var chart = new Chart(ctx,{
