@@ -202,3 +202,8 @@ function getVotes() {
 
   Product.allImages.click = parsed;
 }
+
+if (data === null){
+  voteStorage();
+}
+else (getVotes());
