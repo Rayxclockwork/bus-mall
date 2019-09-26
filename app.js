@@ -15,6 +15,7 @@ var rightPI = null;
 //votes start at 0
 var prodVote = 0;
 
+
 //contructor function
 function Product(name, image){
   this.name = name;
@@ -95,6 +96,7 @@ var handleClickOnProduct = function(event) {
     productImage.removeEventListener('click', handleClickOnProduct);
     chart();
     list();
+    voteStorage();
   } else {
     renderProduct();
   }
@@ -188,12 +190,11 @@ function chart(){
     }
   });
 }
-
-
 function voteStorage(){
-  var json = JSON.stringify(Product.allImages.click);
+  var json = JSON.stringify(Product.allImages);
   localStorage.setItem('products', json);
 }
+
 function getVotes() {
   var data = localStorage.getItem('products');
   var parsed = JSON.parse(data);
@@ -201,5 +202,3 @@ function getVotes() {
 
   Product.allImages.click = parsed;
 }
-
-console.log(voteStorage);
