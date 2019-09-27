@@ -116,13 +116,14 @@ function list(){
 }
 Product.objectName = [];
 Product.objectClick = [];
+Product.objectView= [];
 
 function data(){
-  for(var i=0; i < Product.allImages.length; i++)
+  for(var i=0; i < Product.allImages.length; i++){
     Product.objectName.push(Product.allImages[i].name);
-  for(var j=0; j < Product.allImages.length; j++)
-    Product.objectClick.push(Product.allImages[j].click);
-  console.log(Product.objectClick);
+    Product.objectClick.push(Product.allImages[i].click);
+    Product.objectView.push(Product.allImages[i].view);
+  }
 }
 
 
@@ -138,6 +139,41 @@ function chart(){
       datasets: [{
         label: '# of Votes',
         data: Product.objectClick,
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)'
+        ],
+        borderWidth: 1
+      },
+      {
+        label: '# of Views',
+        data: Product.objectView,
         backgroundColor: [
           'rgba(255, 99, 132, 0.2)',
           'rgba(54, 162, 235, 0.2)',
