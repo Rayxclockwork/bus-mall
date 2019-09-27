@@ -185,16 +185,16 @@ function chart(){
 //local storage
 function voteStorage(){
   var json = JSON.stringify(Product.allImages);
-  localStorage.setItem('products', json);
+  localStorage.setItem('product', json);
 }
 
 function getVotes() {
   if (localStorage.product){
-    var data = localStorage.getItem('products');
+    var data = localStorage.getItem('product');
     var parsed = JSON.parse(data);
 
     for(var i = 0; i < parsed.length; i++);
-    new Product(parsed[1].name, parsed[i].image, parsed[i].click, parsed[i].view);
+    new Product(parsed[i].name, parsed[i].image);
 
   } else{
     new Product('Bag', 'imgs/bag.jpg');
