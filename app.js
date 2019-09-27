@@ -26,26 +26,7 @@ function Product(name, image){
   Product.allImages.push(this);
 }
 
-new Product('Bag', 'imgs/bag.jpg');
-new Product('Banana Slicer', 'imgs/banana.jpg');
-new Product('Bathroom Helper', 'imgs/bathroom.jpg');
-new Product('Boots', 'imgs/boots.jpg');
-new Product('All in one Breakfast', 'imgs/breakfast.jpg');
-new Product('"Bubblegum"', 'imgs/bubblegum.jpg');
-new Product('Chair', 'imgs/chair.jpg');
-new Product('Cthulhu', 'imgs/cthulhu.jpg');
-new Product('Dog? Duck? Who knows?!', 'imgs/dog-duck.jpg');
-new Product('Dragon Meat', 'imgs/dragon.jpg');
-new Product('Pen', 'imgs/pen.jpg');
-new Product('Pet Powered Sweeper', 'imgs/pet-sweep.jpg');
-new Product('Pizza Scissors', 'imgs/scissors.jpg');
-new Product('Shark', 'imgs/shark.jpg');
-new Product('Child Labor', 'imgs/sweep.png');
-new Product('Tauntaun', 'imgs/tauntaun.jpg');
-new Product('Unicorn Meat', 'imgs/unicorn.jpg');
-new Product('Tentacle USB', 'imgs/usb.gif');
-new Product('Watering Can', 'imgs/water-can.jpg');
-new Product('Wine Glass', 'imgs/wine-glass.jpg');
+
 
 //Random function
 function randomProduct(){
@@ -117,11 +98,8 @@ function display(){
   }
 }
 
-renderProduct();
-productImage.addEventListener('click', handleClickOnProduct);
 
-// Product.objectName =[];
-// Product.objectClick = [];
+productImage.addEventListener('click', handleClickOnProduct);
 
 //Populates list
 function list(){
@@ -166,7 +144,21 @@ function chart(){
           'rgba(255, 206, 86, 0.2)',
           'rgba(75, 192, 192, 0.2)',
           'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 159, 64, 0.2)'
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)'
         ],
         borderColor: [
           'rgba(255, 99, 132, 1)',
@@ -190,20 +182,44 @@ function chart(){
     }
   });
 }
+//local storage
 function voteStorage(){
   var json = JSON.stringify(Product.allImages);
   localStorage.setItem('products', json);
 }
 
 function getVotes() {
-  var data = localStorage.getItem('products');
-  var parsed = JSON.parse(data);
-  console.log('parsed', parsed);
+  if (localStorage.product){
+    var data = localStorage.getItem('products');
+    var parsed = JSON.parse(data);
 
-  Product.allImages.click = parsed;
+    for(var i = 0; i < parsed.length; i++);
+    new Product(parsed[1].name, parsed[i].image, parsed[i].click, parsed[i].view);
+
+  } else{
+    new Product('Bag', 'imgs/bag.jpg');
+    new Product('Banana Slicer', 'imgs/banana.jpg');
+    new Product('Bathroom Helper', 'imgs/bathroom.jpg');
+    new Product('Boots', 'imgs/boots.jpg');
+    new Product('All in one Breakfast', 'imgs/breakfast.jpg');
+    new Product('"Bubblegum"', 'imgs/bubblegum.jpg');
+    new Product('Chair', 'imgs/chair.jpg');
+    new Product('Cthulhu', 'imgs/cthulhu.jpg');
+    new Product('Dog? Duck? Who knows?!', 'imgs/dog-duck.jpg');
+    new Product('Dragon Meat', 'imgs/dragon.jpg');
+    new Product('Pen', 'imgs/pen.jpg');
+    new Product('Pet Powered Sweeper', 'imgs/pet-sweep.jpg');
+    new Product('Pizza Scissors', 'imgs/scissors.jpg');
+    new Product('Shark', 'imgs/shark.jpg');
+    new Product('Child Labor', 'imgs/sweep.png');
+    new Product('Tauntaun', 'imgs/tauntaun.jpg');
+    new Product('Unicorn Meat', 'imgs/unicorn.jpg');
+    new Product('Tentacle USB', 'imgs/usb.gif');
+    new Product('Watering Can', 'imgs/water-can.jpg');
+    new Product('Wine Glass', 'imgs/wine-glass.jpg');
+  }
+  //Product.allImages.click = parsed;
+  renderProduct();
 }
 
-if (data === null){
-  voteStorage();
-}
-else (getVotes());
+getVotes();
