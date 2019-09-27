@@ -17,11 +17,11 @@ var prodVote = 0;
 
 
 //contructor function
-function Product(name, image){
+function Product(name, image, click=0, view=0){
   this.name = name;
   this.image = image;
-  this.click = 0;
-  this.view = 0;
+  this.click = click;
+  this.view = view;
 
   Product.allImages.push(this);
 }
@@ -193,9 +193,9 @@ function getVotes() {
     var data = localStorage.getItem('product');
     var parsed = JSON.parse(data);
 
-    for(var i = 0; i < parsed.length; i++);
-    new Product(parsed[i].name, parsed[i].image);
-
+    for(var i = 0; i < parsed.length; i++){
+      new Product(parsed[i].name, parsed[i].image, parsed[i].click, parsed[i].view);
+    }
   } else{
     new Product('Bag', 'imgs/bag.jpg');
     new Product('Banana Slicer', 'imgs/banana.jpg');
